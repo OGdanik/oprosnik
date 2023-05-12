@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Главная{% endblock %}
 {% block content %}
-Главная
+<h2>Добавить опрос</h2>
+<form method="post">
+    <input type="text" name="name_opros">
+    <select name="tema">
+        <option selected disabled>Выбор темы</option>
+        {% for tema in tems %}
+        <option value="{{ tema.id }}">{{ tema.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<h2>Название опроса: {{ opros.name }}</h2>
+<h4>Тематика: {{ opros.tematiki.name }}</h4>
+
+<form method="post" id="questions" style="width:max-content">
+    <div class="question">
+        <input type="text" name="question" placeholder="Текст вопроса">
+        <p>Варианты ответов: </p>
+        <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
+    </div>
+    <button type="submit">Добавить вопрос</button>
+</form>
+{% endblock %}

@@ -304,6 +304,8 @@ COPY public.otveti (id, text, count_otvetov, id_vopros) FROM stdin;
 --
 
 COPY public.pol (id, name) FROM stdin;
+1	Мужской
+2	Женский
 \.
 
 
@@ -348,7 +350,7 @@ SELECT pg_catalog.setval('public.otveti_id_seq', 1, false);
 -- Name: pol_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pol_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pol_id_seq', 2, true);
 
 
 --

@@ -1,0 +1,46 @@
+body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-div {
+    background: #dcdcdc;
+    width: 100%;
+    box-shadow: 0 0 10px black;
+}
+
+.header-div li:hover {
+    border-radius: 15px;
+    background: #ffce85;
+}
+
+.header {
+    padding: 15px 0;
+    margin: 0;
+    list-style-type: none;
+}
+.header-item {
+    display: inline;
+    margin: 0 1%;
+    padding: 5px 10px;
+}
+
+.active {
+    border-bottom: 3px solid #ff9900;
+}
+
+.auth {
+    float: right;
+}
+
+.question {
+    width: max-content;
+    margin: 5px;
+    border: 1px solid black;
+    padding: 5px;
+}

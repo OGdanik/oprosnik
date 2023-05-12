@@ -8,11 +8,26 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
 <body>
-    {% if current_user.is_authenticated %}
-    <div class="col text-end" id="account">
-      <a href="{{ url_for('main.profile') }}">{{current_user.login}}</a>, <a href="{{ url_for('auth.logout') }}">Выйти</a>
+    <div class="header-div">
+        <table style="width:100%">
+            <tr>
+                <td style="width:91%">
+                    <ul class="header">
+                        <a href="{{ url_for('main.index') }}"><li class="header-item {{ active_index }}">Главная</li></a>
+                        <a href="{{ url_for('main.my_oprosi') }}"><li class="header-item {{ active_oprosi }}">Мои опросы</li></a>
+                    </ul>
+                </td>
+                <td>
+                    {% if current_user.is_authenticated %}
+                    <div class="auth">
+                    {{current_user.login}}, <a href="{{ url_for('auth.logout') }}">Выйти</a>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
     </div>
-    {% endif %}
+
         {% block content %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>

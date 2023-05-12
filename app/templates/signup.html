@@ -1,0 +1,22 @@
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+<form method="post">
+    <p>Логин </p><input type="text" name="login">
+    <p>Пароль </p><input type="password" name="password1">
+    <p>Подтверждение пароля </p><input type="password" name="password2">
+    <p>ФИО </p><input type="text" name="fio">
+    <p>Возраст </p><input type="number" min="0" max="100" name="age">
+    <fieldset>
+        <legend>Выберите пол:</legend>
+        <input type="radio" name="pol" value="1" id="male">
+        <label for="male">Мужской</label>
+        <input type="radio" name="pol" value="2" id="female">
+        <label for="female">Женский</label>
+    </fieldset>
+    <button type="submit">Зарегестрироваться</button>
+</form>

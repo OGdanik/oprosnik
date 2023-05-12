@@ -26,7 +26,9 @@ class oprosi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     id_accounts = db.Column(db.Integer, ForeignKey('accounts.id'))
+    id_tematiki = db.Column(db.Integer, ForeignKey('tematiki.id'))
     accounts = relationship('accounts')
+    tematiki = relationship('tematiki')
 
 class voprosi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
