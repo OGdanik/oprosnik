@@ -291,6 +291,10 @@ COPY public.accounts (id, login, password, fio, age, id_pol) FROM stdin;
 
 COPY public.oprosi (id, name, id_accounts, id_tematiki) FROM stdin;
 1	Тест	2	1
+3	Тест 2	2	1
+4	Тест 3	2	2
+5	Тест 4	2	3
+6	Тест 5	2	1
 \.
 
 
@@ -302,11 +306,9 @@ COPY public.otveti (id, text, count_otvetov, id_vopros) FROM stdin;
 10	Вариант 2	0	5
 11	Вариант 3	0	5
 13	Вар 2	0	6
-15	Вар 2	0	7
-16	Вар 3	0	7
 9	Вариает 1	1	5
 12	Вар 1	1	6
-14	Вар 1	1	7
+17	вари 3	0	6
 \.
 
 
@@ -338,7 +340,6 @@ COPY public.tematiki (id, name, id_accounts) FROM stdin;
 COPY public.voprosi (id, text, id_opros) FROM stdin;
 5	Тестовый вопрос	1
 6	Тестовый вопрос №2	1
-7	Тест 3	1
 \.
 
 
@@ -353,14 +354,14 @@ SELECT pg_catalog.setval('public.accounts_id_seq', 2, true);
 -- Name: oprosi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oprosi_id_seq', 2, true);
+SELECT pg_catalog.setval('public.oprosi_id_seq', 6, true);
 
 
 --
 -- Name: otveti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.otveti_id_seq', 16, true);
+SELECT pg_catalog.setval('public.otveti_id_seq', 19, true);
 
 
 --
