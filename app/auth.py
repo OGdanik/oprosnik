@@ -18,6 +18,8 @@ def logout():
 
 @auth.route('/signup')
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
     return render_template('signup.html')
 
 @auth.route('/signup', methods=['POST'])

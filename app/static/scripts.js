@@ -1,4 +1,3 @@
-
 function add_otvet(but) {
     var input = document.createElement('input')
     input.setAttribute('type', 'text')

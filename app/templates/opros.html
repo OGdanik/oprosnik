@@ -7,11 +7,10 @@
     {% for item in otvets %}
     <div class="question">
         <input type="text" style="display: none" value="{{ item[0].voprosi.id }}">
-        <p>Вопрос: "{{ item[0].voprosi.text }}"
-        <p>Варианты ответов: </p>
+        <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
         {% for i in item %}
         <p></p>
-        <input type="checkbox" id="{{ i.id }}" name="otveti" value="{{ i.id }}"> <label for="{{ i.id }}">{{ i.text }}</label>
+        <input class="custom-checkbox" type="checkbox" id="{{ i.id }}" name="otveti" value="{{ i.id }}"> <label for="{{ i.id }}">{{ i.text }}</label>
         {% endfor %}
     </div>
     {% endfor %}

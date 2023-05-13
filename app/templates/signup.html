@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
 {% with messages = get_flashed_messages() %}
    {% if messages %}
       {% for message in messages %}
@@ -5,18 +8,26 @@
       {% endfor %}
    {% endif %}
 {% endwith %}
-<form method="post">
-    <p>Логин </p><input type="text" name="login">
-    <p>Пароль </p><input type="password" name="password1">
-    <p>Подтверждение пароля </p><input type="password" name="password2">
-    <p>ФИО </p><input type="text" name="fio">
-    <p>Возраст </p><input type="number" min="0" max="100" name="age">
-    <fieldset>
-        <legend>Выберите пол:</legend>
-        <input type="radio" name="pol" value="1" id="male">
-        <label for="male">Мужской</label>
-        <input type="radio" name="pol" value="2" id="female">
-        <label for="female">Женский</label>
-    </fieldset>
-    <button type="submit">Зарегестрироваться</button>
-</form>
+<div class="signup">
+   <form method="post">
+      <label class="text-field__label" for="login">Логин</label>
+      <input class="text-field__input" type="text" name="login" id="login">
+      <label class="text-field__label" for="pass1">Пароль</label>
+      <input class="text-field__input" type="password" name="password1" id="pass1">
+      <label class="text-field__label" for="pass2">Подтверждение пароля</label>
+      <input class="text-field__input" type="password" name="password2" id="pass2">
+      <label class="text-field__label" for="f">ФИО</label>
+      <input class="text-field__input" type="text" name="fio" id="f">
+      <label class="text-field__label" for="a">Возраст</label>
+      <input class="text-field__input" style="width:min-content" type="number" min="0" max="100" name="age" id="a">
+      <fieldset style="margin: 5px;">
+         <legend>Выберите пол:</legend>
+         <input type="radio" name="pol" value="1" id="male">
+         <label for="male">Мужской</label>
+         <input type="radio" name="pol" value="2" id="female">
+         <label for="female">Женский</label>
+      </fieldset>
+      <button type="submit">Зарегестрироваться</button>
+   </form>
+</div>
+{% endblock %}
