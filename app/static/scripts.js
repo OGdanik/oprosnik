@@ -7,4 +7,6 @@ function add_otvet(but) {
     input.setAttribute('class', 'text-field__input')
     but.before(input)
     but.before(document.createElement('br'))
+    var sub = but.nextElementSibling
+    sub.setAttribute('style', '')
 }

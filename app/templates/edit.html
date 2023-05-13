@@ -20,14 +20,17 @@
 </div>
             <h2>Просмотр опроса</h2>
             {% for item in otvets %}
-            <div class="block">
-                <input type="text" style="display: none" value="{{ item[0].voprosi.id }}">
-                <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
-                <p>Варианты ответов: </p>
-                {% for i in item %}
-                <p class="otv">{{i.text}} Количество ответов: <span class="count">{{i.count_otvetov}}</span></p>
-                {% endfor %}
-                <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
+            <div class="block questions">
+                <form method="post" action="/add_otveti/{{ opros.id }}/{{ item[0].voprosi.id }}">
+                    <input type="text" style="display: none" value="{{ item[0].voprosi.id }}" name="id_v">
+                    <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
+                    <p>Варианты ответов: </p>
+                    {% for i in item %}
+                    <p class="otv">{{i.text}} <br>Количество ответов: <span class="count">{{i.count_otvetov}}</span></p>
+                    {% endfor %}
+                    <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
+                    <button type="submit" style="display:none">Сохранить</button>
+                </form>
             </div>
             {% endfor %}
 {% endblock %}

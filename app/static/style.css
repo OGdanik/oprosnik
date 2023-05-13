@@ -191,6 +191,11 @@ button:focus {
 }
 
 .otv {
-    padding: 5px;
-    border: 1px do
+    border-radius: 25px;
+    padding: 10px;
+    border: 3px dashed #ff9900;
+}
+
+.content {
+    margin: 0 1%;
 }
