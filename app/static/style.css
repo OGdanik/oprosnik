@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
 body {
     font-family: Verdana, Helvetica, Arial, sans-serif;
     margin: 0;
@@ -39,8 +43,19 @@ a {
 }
 
 .question {
-    width: max-content;
+    width: auto;
     margin: 5px;
     border: 1px solid black;
     padding: 5px;
 }
+
+.list_oprosi {
+    margin: 0 10%;
+}
+
+input[type="text"] {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+  }

@@ -11,3 +11,7 @@
     <button type="submit">Войти</button>
 </form>
 <a href="{{ url_for('auth.signup') }}">Регистрация</a>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+{% endblock %}

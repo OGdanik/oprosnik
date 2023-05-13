@@ -1,15 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}Главная{% endblock %}
 {% block content %}
-<h2>Название опроса: {{ opros.name }}</h2>
-<h4>Тематика: {{ opros.tematiki.name }}</h4>
+<table style="width:100%;">
+    <tr>
+        <td style="vertical-align: text-top;">
+            <h1>Редактирование опроса</h1>
+            <h2>Название опроса: {{ opros.name }}</h2>
+            <h4>Тематика: {{ opros.tematiki.name }}</h4>
 
-<form method="post" id="questions" style="width:max-content">
-    <div class="question">
-        <input type="text" name="question" placeholder="Текст вопроса">
-        <p>Варианты ответов: </p>
-        <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
-    </div>
-    <button type="submit">Добавить вопрос</button>
-</form>
+            <form method="post" id="questions" style="width:max-content">
+                <div class="question">
+                    <input type="text" name="question" placeholder="Текст вопроса">
+                    <p>Варианты ответов: </p>
+                    <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
+                </div>
+                <button type="submit">Добавить вопрос</button>
+            </form>
+            <div id="qrcode"></div>
+        </td>
+        <td style="vertical-align: text-top;">
+            <h1>Просмотр опроса</h1>
+            {% for item in otvets %}
+            <div class="question">
+                <input type="text" style="display: none" value="{{ item[0].voprosi.id }}">
+                <p>Вопрос: "{{ item[0].voprosi.text }}"
+                <p>Варианты ответов: </p>
+                {% for i in item %}
+                <p>{{i.text}} Количество ответов: {{i.count_otvetov}}</p>
+                {% endfor %}
+                <button type="button" onclick="add_otvet(this)">Добавить вариант ответа</button>
+            </div>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='davidshimjs-qrcodejs-04f46c6/qrcode.min.js') }}"></script>
+<script src="{{ url_for('static', filename='qrcode.js') }}"></script>
 {% endblock %}

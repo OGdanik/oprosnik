@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="list_oprosi">
+    <h2>Опрос: "{{ opros.name }}"</h2>
+    <form method="POST">
+    {% for item in otvets %}
+    <div class="question">
+        <input type="text" style="display: none" value="{{ item[0].voprosi.id }}">
+        <p>Вопрос: "{{ item[0].voprosi.text }}"
+        <p>Варианты ответов: </p>
+        {% for i in item %}
+        <p></p>
+        <input type="checkbox" id="{{ i.id }}" name="otveti" value="{{ i.id }}"> <label for="{{ i.id }}">{{ i.text }}</label>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit">Завершить</button>
+    </form>
+</div>
+{% endblock %}

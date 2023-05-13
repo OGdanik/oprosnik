@@ -21,6 +21,8 @@ class pol(db.Model):
 class tematiki(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
+    id_accounts = db.Column(db.Integer, ForeignKey('accounts.id'))
+    accounts = relationship('accounts')
 
 class oprosi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
