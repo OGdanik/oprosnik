@@ -113,3 +113,14 @@ def add_otveti(id_o, id_v):
         db.session.add(new_otvet)
     db.session.commit()
     return redirect(url_for('main.edit_opros', id_o=id_o))
+
+@main.route('/delete_vopros/<int:id_o>/<int:id_v>', methods=['POST', 'GET'])
+@login_required
+def delete_vopros(id_o, id_v):
+    vopros = db.session.query(voprosi).get(id_v)
+    otvets = db.session.query(otveti).filter(otveti.id_vopros == id_v).all()
+    for i in otvets:
+        db.session.delete(i)
+    db.session.delete(vopros)
+    db.session.commit()
+    return redirect(url_for('main.edit_opros', id_o=id_o))

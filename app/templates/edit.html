@@ -21,6 +21,7 @@
             <h2>Просмотр опроса</h2>
             {% for item in otvets %}
             <div class="block questions">
+                <button type="button"><a style="color:white" href="{{ url_for('main.delete_vopros', id_v=item[0].voprosi.id, id_o=opros.id) }}">Удалить вопрос</a></button>
                 <form method="post" action="/add_otveti/{{ opros.id }}/{{ item[0].voprosi.id }}">
                     <input type="text" style="display: none" value="{{ item[0].voprosi.id }}" name="id_v">
                     <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
