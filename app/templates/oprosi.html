@@ -7,6 +7,7 @@
         <p>Опрос: "{{ item.name }}"
         <p>Тематика: "{{ item.tematiki.name }}"</p>
         <p><a href="{{ url_for('main.edit_opros', id_o=item.id) }}">Редактирование и просмотр</a>
+        <p><a href="{{ url_for('main.delete_opros', id_o=item.id) }}">Удалить</a>
     </div>
     {% endfor %}
 </div>

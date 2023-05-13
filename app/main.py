@@ -95,3 +95,11 @@ def opros_post(id_o):
         db.session.add(otvet)
     db.session.commit()
     return redirect(url_for('main.opros', id_o=id_o))
+
+@main.route('/<int:id_o>/delete')
+@login_required
+def delete_opros(id_o):
+    opros = db.session.query(oprosi).get(id_o)
+    db.session.delete(opros)
+    db.session.commit()
+    return redirect(url_for('main.my_oprosi'))
