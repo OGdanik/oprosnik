@@ -281,7 +281,7 @@ ALTER TABLE ONLY public.voprosi ALTER COLUMN id SET DEFAULT nextval('public.vopr
 --
 
 COPY public.accounts (id, login, password, fio, age, id_pol) FROM stdin;
-2	admin	sha256$ATxtGABPSH2vUU59$0742f9ead29122e81d136d64c51cf7b313d9918df4d37aad10f5e35737f8a651	Daniil Kuznetsov	18	1
+2	admin	sha256$ATxtGABPSH2vUU59$0742f9ead29122e81d136d64c51cf7b313d9918df4d37aad10f5e35737f8a651	Иванов Иван Иванович	18	1
 \.
 
 
@@ -291,7 +291,6 @@ COPY public.accounts (id, login, password, fio, age, id_pol) FROM stdin;
 
 COPY public.oprosi (id, name, id_accounts, id_tematiki) FROM stdin;
 1	Тест	2	1
-2	Тест 2	2	2
 \.
 
 
@@ -375,7 +374,7 @@ SELECT pg_catalog.setval('public.pol_id_seq', 2, true);
 -- Name: tematiki_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tematiki_id_seq', 3, true);
+SELECT pg_catalog.setval('public.tematiki_id_seq', 4, true);
 
 
 --

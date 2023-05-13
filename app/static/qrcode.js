@@ -6,8 +6,8 @@ function create_qr() {
 
     new QRCode(document.getElementById('qrcode'), {
         text: url,
-        width: 128,
-        height: 128,
+        width: 200,
+        height: 200,
         colorDark : "#000000",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H

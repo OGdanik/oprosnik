@@ -15,7 +15,7 @@ a {
 .header-div {
     background: #dcdcdc;
     width: 100%;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 7px black;
 }
 
 .header-div li:hover {
@@ -62,8 +62,14 @@ input[type="text"] {
 }
 
 .block {
+    vertical-align: top;
+    display: inline-block;
+    border-radius: .5em;
+    margin: 30px;
+    background: #dcdcdc;
     width: max-content;
     padding: 25px;
+    box-shadow: 0 0 5px gray;
 }
 
 .text-field {
@@ -143,4 +149,48 @@ button {
     font-weight: 700;
     padding: .50em;
     border-radius: .5em;
+    background: #ff9900;
+}
+
+button:hover {
+    cursor: pointer;
+    background: rgba(255, 153, 0, 0.75);
+  }
+  
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.2);
+  }
+
+.questions {
+    margin: 20px 10px;
+}
+
+.a-but {
+    border: none;
+    color: white;
+    padding: .30em;
+    border-radius: .5em;
+    background: #ff9900;
+}
+
+.a-but:hover {
+    cursor: pointer;
+    background: rgba(255, 153, 0, 0.75);
+}
+
+.a-but:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.2);
+  }
+
+.count {
+    padding: 5px;
+    background: #ff9900;
+    border-radius: 30px;
+}
+
+.otv {
+    padding: 5px;
+    border: 1px do
 }

@@ -2,6 +2,13 @@
 {% block title %}Главная{% endblock %}
 {% block content %}
 <div class="block">
+    <h2>Об аккаунте</h2>
+    <p>Логин: {{ current_user.login }}</p>
+    <p>ФИО: {{ current_user.fio }}</p>
+    <p>Возраст: {{ current_user.age }}</p>
+    <p>Пол: {{ current_user.pol.name }}</p>
+</div>
+<div class="block">
     <h2>Добавить опрос</h2>
     <form method="post">
         <div class="text-field">
@@ -18,8 +25,9 @@
         <br>
         <button type="submit">Добавить</button>
     </form>
-
-    <h4>Добавить тему</h4>
+</div>
+<div class="block">
+    <h2>Добавить тему</h2>
     <form method="post" action="/add_tematika">
         <div class="text-field">
             <label class="text-field__label" for="name_t">Название темы</label>

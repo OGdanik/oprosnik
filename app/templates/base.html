@@ -20,7 +20,7 @@
                 <td>
                     {% if current_user.is_authenticated %}
                     <div class="auth">
-                    {{current_user.login}}, <a href="{{ url_for('auth.logout') }}">Выйти</a>
+                    {{current_user.login}}, <a class="a-but" href="{{ url_for('auth.logout') }}">Выйти</a>
                     </div>
                     {% endif %}
                 </td>
