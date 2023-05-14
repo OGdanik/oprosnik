@@ -10,7 +10,7 @@
 </div>
 <div class="block">
     <h2>Добавить опрос</h2>
-    <form method="post">
+    <form method="post" onsubmit="validate_add_opros(event);">
         <div class="text-field">
             <label class="text-field__label" for="name">Название опроса</label>
             <input class="text-field__input"  type="text" name="name_opros" id="name">

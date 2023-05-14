@@ -9,3 +9,7 @@ function add_otvet(but) {
     var sub = but.nextElementSibling
     sub.setAttribute('style', '')
 }
+
+function validate_add_opros(e) {
+    e.preventDefault()
+}

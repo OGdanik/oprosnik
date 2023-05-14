@@ -76,6 +76,8 @@ def add_tematika():
 @main.route('/<int:id_o>')
 def opros(id_o):
     opros = db.session.query(oprosi).get(id_o)
+    if not opros:
+        return abort(404)
     if current_user.is_authenticated:
         if opros.id_accounts == current_user.id:
             return redirect(url_for('main.edit_opros', id_o=id_o))
