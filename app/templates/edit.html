@@ -10,7 +10,7 @@
             <div id="qrcode"></div>
 </div>
 <div class="block">
-    <form method="post" id="questions" style="width:max-content">
+    <form method="post" id="questions" style="width:max-content" onsubmit="validate_add_vopros(event)">
             <label class="text-field__label" for="vopr">Текст вопроса</label>
             <textarea class="text-field__input" cols="40" rows="5" name="question" id="vopr" maxlength="200"></textarea>
             <p>Варианты ответов: </p>

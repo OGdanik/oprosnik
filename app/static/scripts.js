@@ -24,3 +24,16 @@ function validate_add_tema(e) {
         e.preventDefault()
     }
 }
+
+function validate_add_vopros(e) {
+    var name = document.getElementById('vopr')
+    var otvets = document.getElementsByName('otvet')
+    otvets.forEach(function(item) {
+        if (!item.value) {
+            e.preventDefault()
+        }
+    })
+    if (!name.value) {
+        e.preventDefault()
+    }
+}
