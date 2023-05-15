@@ -16,8 +16,8 @@
             <input class="text-field__input"  type="text" name="name_opros" id="name">
         </div>
         <p>Выбрать тему</p>
-        <select name="tema">
-            <option selected disabled>Нажмите для выбора темы</option>
+        <select name="tema" id="select_tema">
+            <option selected disabled value="-1">Нажмите для выбора темы</option>
             {% for tema in tems %}
             <option value="{{ tema.id }}">{{ tema.name }}</option>
             {% endfor %}
@@ -28,7 +28,7 @@
 </div>
 <div class="block">
     <h2>Добавить тему</h2>
-    <form method="post" action="/add_tematika">
+    <form method="post" action="/add_tematika" onsubmit="validate_add_tema(event);">
         <div class="text-field">
             <label class="text-field__label" for="name_t">Название темы</label>
             <input class="text-field__input" type="text" name="name_tem" id="name_t">

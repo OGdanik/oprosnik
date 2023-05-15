@@ -11,5 +11,16 @@ function add_otvet(but) {
 }
 
 function validate_add_opros(e) {
-    e.preventDefault()
+    var name = document.getElementById('name')
+    var select = document.getElementById('select_tema')
+    if (!name.value || select.value == -1) {
+        e.preventDefault()
+    }
+}
+
+function validate_add_tema(e) {
+    var name = document.getElementById('name_t')
+    if (!name.value) {
+        e.preventDefault()
+    }
 }
