@@ -9,7 +9,7 @@
    {% endif %}
 {% endwith %}
 <div class="signup">
-   <form method="post">
+   <form method="post" onsubmit="validation_signup(event)">
       <label class="text-field__label" for="login">Логин</label>
       <input class="text-field__input" type="text" name="login" id="login">
       <label class="text-field__label" for="pass1">Пароль</label>
@@ -30,4 +30,7 @@
       <button type="submit">Зарегестрироваться</button>
    </form>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='login.js') }}"></script>
 {% endblock %}

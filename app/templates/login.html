@@ -9,7 +9,7 @@
     </div>
 {% endif %}
 {% endwith %}
-    <form method="post">
+    <form method="post" onsubmit="validation_login(event)">
         <label class="text-field__label" for="login">Логин</label>
         <input class="text-field__input" type="text" name="login" id="login">
         <label class="text-field__label" for="pass1">Пароль</label>
