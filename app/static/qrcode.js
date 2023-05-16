@@ -12,4 +12,16 @@ function create_qr() {
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
     });
+    document.getElementById('qrcode').setAttribute('style','display:none;')
+}
+
+function download_qr() {
+    var a = document.createElement('a');
+    var div = document.getElementById('qrcode')
+    var img = div.querySelector('img')
+    a.href = img.getAttribute('src')
+    a.download = "qrcode.png";
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
 }
