@@ -1,7 +1,7 @@
-var alert = document.body.querySelector('.notification');
-if (alert) {
-    alert.innerHTML = 'Войдите для использования системы.'
-}
+// var alert = document.body.querySelector('.notification');
+// if (alert) {
+//     alert.innerHTML = 'Войдите для использования системы.'
+// }
 function validation_login(e) {
     var log = document.getElementById('login')
     var pass = document.getElementById('pass1')

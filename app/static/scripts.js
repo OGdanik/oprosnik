@@ -1,25 +1,41 @@
 function add_otvet(but) {
+    var div = document.createElement('div')
+    div.setAttribute('class', 'text-field__group')
     var input = document.createElement('input')
+    var delete_but = document.createElement('button')
+    delete_but.setAttribute('onclick', 'delete_otvet(this)')
+    delete_but.setAttribute('type', 'button')
+    delete_but.setAttribute('class','text-field__btn')
+    delete_but.innerHTML = 'Удалить'
     input.setAttribute('type', 'text')
     input.setAttribute('name', 'otvet')
     input.setAttribute('placeholder', 'Текст ответа')
     input.setAttribute('class', 'text-field__input')
-    but.before(input)
+    div.append(input)
+    div.append(delete_but)
+    but.before(div)
     but.before(document.createElement('br'))
-    var sub = but.nextElementSibling
-    sub.setAttribute('style', '')
 }
 
 function add_otvet_for_edit(but) {
+    var div = document.createElement('div')
+    div.setAttribute('class', 'text-field__group')
     var input = document.createElement('input')
+    var delete_but = document.createElement('button')
+    delete_but.setAttribute('onclick', 'delete_otvet(this)')
+    delete_but.setAttribute('type', 'button')
+    delete_but.setAttribute('class','text-field__btn')
+    delete_but.innerHTML = 'Удалить'
     input.setAttribute('type', 'text')
     input.setAttribute('name', 'otvet_edit')
     input.setAttribute('placeholder', 'Текст ответа')
     input.setAttribute('class', 'text-field__input')
-    but.before(input)
-    but.before(document.createElement('br'))
+    div.append(input)
+    div.append(delete_but)
+    but.before(div)
     var sub = but.nextElementSibling
     sub.setAttribute('style', '')
+    but.before(document.createElement('br'))
 }
 
 function validate_add_opros(e) {
@@ -57,4 +73,9 @@ function validate_add_vopros_2(e) {
             e.preventDefault()
         }
     })
+}
+
+function delete_otvet(but) {
+    but.parentNode.nextSibling.remove()
+    but.parentNode.remove()
 }

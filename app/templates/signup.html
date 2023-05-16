@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Главная{% endblock %}
 {% block content %}
-{% with messages = get_flashed_messages() %}
-   {% if messages %}
-      {% for message in messages %}
-         {{ message }}
-      {% endfor %}
-   {% endif %}
-{% endwith %}
 <div class="signup">
+   {% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="notification is-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
    <form method="post" onsubmit="validation_signup(event)">
       <label class="text-field__label" for="login">Логин</label>
       <input class="text-field__input" type="text" name="login" id="login">
