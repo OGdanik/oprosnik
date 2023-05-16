@@ -44,3 +44,10 @@ class otveti(db.Model):
     count_otvetov = db.Column(db.Integer)
     id_vopros = db.Column(db.Integer, ForeignKey('voprosi.id'))
     voprosi = relationship('voprosi')
+
+class opros_account(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_accounts = db.Column(db.Integer, ForeignKey('accounts.id'))
+    id_oprosi = db.Column(db.Integer, ForeignKey('oprosi.id'))
+    accounts = relationship('accounts')
+    oprosi = relationship('oprosi')

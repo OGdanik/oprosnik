@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, json, request, url_for, redirect, flash, abort
 from flask_login import login_user, logout_user, login_required, current_user
-from .models import oprosi, tematiki, voprosi, otveti
+from .models import oprosi, tematiki, voprosi, otveti, opros_account
 from . import db
 import sys
 
@@ -9,10 +9,11 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @login_required
 def index():
-    tems = db.session.query(tematiki).all()
+    tems = db.session.query(tematiki).filter(tematiki.id_accounts == current_user.id).all()
     return render_template('index.html', active_index='active', tems=tems)
 
 @main.route('/', methods=['POST'])
+@login_required
 def index_post():
     tema = request.form['tema']
     name_o = request.form['name_opros']
@@ -74,7 +75,12 @@ def add_tematika():
     return redirect(url_for('main.index'))
 
 @main.route('/<int:id_o>')
+@login_required
 def opros(id_o):
+    oprosi_user = db.session.query(opros_account).filter(opros_account.id_accounts == current_user.id).all()
+    for item in oprosi_user:
+        if item.id_oprosi == id_o:
+            return redirect(url_for('main.done', id_o=id_o))
     opros = db.session.query(oprosi).get(id_o)
     if not opros:
         return abort(404)
@@ -89,14 +95,17 @@ def opros(id_o):
     return render_template('opros.html', opros=opros, otvets=otvets)
 
 @main.route('/<int:id_o>', methods=['POST'])
+@login_required
 def opros_post(id_o):
     otvets = request.form.getlist('otveti')
+    user_opros = opros_account(id_accounts = current_user.id, id_oprosi = id_o)
+    db.session.add(user_opros)
     for o in otvets:
         otvet = db.session.query(otveti).get(o)
         otvet.count_otvetov = otvet.count_otvetov + 1
         db.session.add(otvet)
     db.session.commit()
-    return redirect(url_for('main.opros', id_o=id_o))
+    return redirect(url_for('main.done', id_o=id_o))
 
 @main.route('/<int:id_o>/delete')
 @login_required
@@ -126,3 +135,16 @@ def delete_vopros(id_o, id_v):
     db.session.delete(vopros)
     db.session.commit()
     return redirect(url_for('main.edit_opros', id_o=id_o))
+
+@main.route('/<int:id_o>/done')
+@login_required
+def done(id_o):
+    flag = True
+    oprosi_user = db.session.query(opros_account).filter(opros_account.id_accounts == current_user.id).all()
+    for item in oprosi_user:
+        if item.id_oprosi == id_o:
+            flag = False
+    if flag:
+        return redirect(url_for('main.opros', id_o=id_o))
+    opros = db.session.query(oprosi).get(id_o)
+    return render_template('done.html', opros=opros)

@@ -59,6 +59,41 @@ ALTER SEQUENCE public.accounts_id_seq OWNED BY public.accounts.id;
 
 
 --
+-- Name: opros_account; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.opros_account (
+    id integer NOT NULL,
+    id_accounts integer NOT NULL,
+    id_oprosi integer NOT NULL
+);
+
+
+ALTER TABLE public.opros_account OWNER TO postgres;
+
+--
+-- Name: opros_account_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.opros_account_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.opros_account_id_seq OWNER TO postgres;
+
+--
+-- Name: opros_account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.opros_account_id_seq OWNED BY public.opros_account.id;
+
+
+--
 -- Name: oprosi; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -242,6 +277,13 @@ ALTER TABLE ONLY public.accounts ALTER COLUMN id SET DEFAULT nextval('public.acc
 
 
 --
+-- Name: opros_account id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.opros_account ALTER COLUMN id SET DEFAULT nextval('public.opros_account_id_seq'::regclass);
+
+
+--
 -- Name: oprosi id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -286,6 +328,14 @@ COPY public.accounts (id, login, password, fio, age, id_pol) FROM stdin;
 
 
 --
+-- Data for Name: opros_account; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.opros_account (id, id_accounts, id_oprosi) FROM stdin;
+\.
+
+
+--
 -- Data for Name: oprosi; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -295,6 +345,7 @@ COPY public.oprosi (id, name, id_accounts, id_tematiki) FROM stdin;
 4	Тест 3	2	2
 5	Тест 4	2	3
 6	Тест 5	2	1
+7	Тест тест	2	2
 \.
 
 
@@ -309,6 +360,11 @@ COPY public.otveti (id, text, count_otvetov, id_vopros) FROM stdin;
 9	Вариает 1	1	5
 12	Вар 1	1	6
 17	вари 3	0	6
+20	Вариант 1	0	8
+21	Вариант 2	0	8
+22	Вариант 3	0	8
+23	Вариант 4	0	8
+24	Вариант 5	0	8
 \.
 
 
@@ -330,6 +386,7 @@ COPY public.tematiki (id, name, id_accounts) FROM stdin;
 1	Книги	2
 2	Политика	2
 3	Обучение	2
+5	Отдых	2
 \.
 
 
@@ -340,6 +397,7 @@ COPY public.tematiki (id, name, id_accounts) FROM stdin;
 COPY public.voprosi (id, text, id_opros) FROM stdin;
 5	Тестовый вопрос	1
 6	Тестовый вопрос №2	1
+8	Тестовый вопрос 3	1
 \.
 
 
@@ -351,17 +409,24 @@ SELECT pg_catalog.setval('public.accounts_id_seq', 2, true);
 
 
 --
+-- Name: opros_account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.opros_account_id_seq', 1, false);
+
+
+--
 -- Name: oprosi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.oprosi_id_seq', 6, true);
+SELECT pg_catalog.setval('public.oprosi_id_seq', 7, true);
 
 
 --
 -- Name: otveti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.otveti_id_seq', 19, true);
+SELECT pg_catalog.setval('public.otveti_id_seq', 24, true);
 
 
 --
@@ -375,14 +440,14 @@ SELECT pg_catalog.setval('public.pol_id_seq', 2, true);
 -- Name: tematiki_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tematiki_id_seq', 4, true);
+SELECT pg_catalog.setval('public.tematiki_id_seq', 5, true);
 
 
 --
 -- Name: voprosi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.voprosi_id_seq', 7, true);
+SELECT pg_catalog.setval('public.voprosi_id_seq', 8, true);
 
 
 --
@@ -391,6 +456,14 @@ SELECT pg_catalog.setval('public.voprosi_id_seq', 7, true);
 
 ALTER TABLE ONLY public.accounts
     ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: opros_account opros_account_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.opros_account
+    ADD CONSTRAINT opros_account_pkey PRIMARY KEY (id);
 
 
 --
@@ -450,11 +523,27 @@ ALTER TABLE ONLY public.tematiki
 
 
 --
+-- Name: opros_account accounts_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.opros_account
+    ADD CONSTRAINT accounts_fkey FOREIGN KEY (id_accounts) REFERENCES public.accounts(id);
+
+
+--
 -- Name: voprosi oprosi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.voprosi
     ADD CONSTRAINT oprosi_fkey FOREIGN KEY (id_opros) REFERENCES public.oprosi(id);
+
+
+--
+-- Name: opros_account oprosi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.opros_account
+    ADD CONSTRAINT oprosi_fkey FOREIGN KEY (id_oprosi) REFERENCES public.oprosi(id);
 
 
 --
