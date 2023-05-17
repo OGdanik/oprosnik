@@ -1,27 +1,26 @@
-document.onload = create_qr()
-
-function create_qr() {
-
+function download_qr() {
+    var qrcode_div = document.createElement('div')
+    qrcode_div.setAttribute('id','qrcode')
     var url = window.location.href.replace('/edit', '')
 
-    new QRCode(document.getElementById('qrcode'), {
+    new QRCode(qrcode_div, {
         text: url,
-        width: 200,
-        height: 200,
+        width: 400,
+        height: 400,
         colorDark : "#000000",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
     });
-    document.getElementById('qrcode').setAttribute('style','display:none;')
-}
-
-function download_qr() {
-    var a = document.createElement('a');
-    var div = document.getElementById('qrcode')
-    var img = div.querySelector('img')
-    a.href = img.getAttribute('src')
-    a.download = "qrcode.png";
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
+    var block = document.createElement('div');
+    block.setAttribute('class','qr')
+    var but_close = document.createElement('button')
+    but_close.setAttribute('class','close_button')
+    but_close.setAttribute('type', 'button')
+    but_close.onclick = function() {
+        block.remove()
+    }
+    but_close.innerHTML = '✕'
+    block.append(but_close)
+    document.body.append(block)
+    block.append(qrcode_div)
 }
