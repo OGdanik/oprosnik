@@ -14,7 +14,7 @@ a {
 
 .header-div {
     background: #dcdcdc;
-    width: 100%;
+    width: auto;
     box-shadow: 0 0 7px black;
 }
 
@@ -317,4 +317,10 @@ button:focus {
   position: fixed;
   top: 10px;
   right: 10px;
+}
+
+.auth {
+  position: absolute;
+  right: 10px;
+  top: 12px;
 }

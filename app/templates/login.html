@@ -12,13 +12,18 @@
 {% endif %}
 {% endwith %}
     <form method="post" onsubmit="validation_login(event)">
+        <input
+    type="hidden"
+    name="next"
+    value="{{ request.args.get('next', '') }}"
+        />
         <label class="text-field__label" for="login">Логин</label>
         <input class="text-field__input" type="text" name="login" id="login">
         <label class="text-field__label" for="pass1">Пароль</label>
         <input class="text-field__input" type="password" name="password" id="pass1">
         <button style="margin: 10px 0; text-align:center" type="submit">Войти</button>
     </form>
-<button type="button"><a style="color: white;" href="{{ url_for('auth.signup') }}">Регистрация</a></button>
+<button type="button"><a style="color: white;" href="{{ url_for('auth.signup', page=request.args.get('next', '')) }}">Регистрация</a></button>
 </div>
 
 {% block scripts %}

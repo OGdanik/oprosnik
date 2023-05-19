@@ -8,6 +8,8 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
     return render_template('login.html')
 
 @auth.route('/logout')
@@ -16,14 +18,14 @@ def logout():
     logout_user()
     return redirect(url_for('main.index'))
 
-@auth.route('/signup')
-def signup():
+@auth.route('/signup/<string:page>')
+def signup(page):
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     return render_template('signup.html')
 
-@auth.route('/signup', methods=['POST'])
-def signup_post():
+@auth.route('/signup/<string:page>', methods=['POST','GET'])
+def signup_post(page):
     login = request.form['login']
     p1 = request.form['password1']
     p2 = request.form['password2']
@@ -36,14 +38,16 @@ def signup_post():
         return redirect(url_for('auth.signup'))
     if user:
         flash('Такой логин уже существует.', category='error')
-        return redirect(url_for('auth.signup'))
+        return redirect(url_for('auth.signup', page=page))
     new_user = accounts(login=login, password=generate_password_hash(p1, method='sha256'), fio=fio, age=age, id_pol=pol)
     db.session.add(new_user)
     db.session.commit()
-    return redirect(url_for('auth.login'))
+    login_user(new_user)
+    return redirect('/'+page)
 
 @auth.route('/login', methods=['POST'])
 def login_post():
+    page = request.form.get('next')
     login = request.form.get('login')
     password = request.form.get('password')
     user = accounts.query.filter_by(login=login).first()
@@ -51,4 +55,4 @@ def login_post():
         flash('Неверный пароль или такого пользователя не существует.')
         return redirect(url_for('auth.login'))
     login_user(user)
-    return redirect(url_for('main.index'))
+    return redirect(page)

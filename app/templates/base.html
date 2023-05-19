@@ -11,7 +11,7 @@
     <div class="header-div">
         <table style="width:100%">
             <tr>
-                <td style="width:91%">
+                <td>
                     <ul class="header">
                         <a href="{{ url_for('main.index') }}"><li class="header-item {{ active_index }}">Главная</li></a>
                         <a href="{{ url_for('main.my_oprosi') }}"><li class="header-item {{ active_oprosi }}">Мои опросы</li></a>
@@ -20,7 +20,7 @@
                 <td>
                     {% if current_user.is_authenticated %}
                     <div class="auth">
-                    {{current_user.login}}, <a class="a-but" href="{{ url_for('auth.logout') }}">Выйти</a>
+                    <span style="display: inline-block">{{current_user.login}}</span>, <a style="display: inline-block" class="a-but" href="{{ url_for('auth.logout') }}">Выйти</a>
                     </div>
                     {% endif %}
                 </td>
