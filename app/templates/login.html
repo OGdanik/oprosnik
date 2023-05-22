@@ -23,10 +23,15 @@
         <input class="text-field__input" type="password" name="password" id="pass1">
         <button style="margin: 10px 0; text-align:center" type="submit">Войти</button>
     </form>
-<button type="button"><a style="color: white;" href="{{ url_for('auth.signup', page=request.args.get('next', '')) }}">Регистрация</a></button>
+    {% if request.args.get('next', '')%}
+    {% set pagenext = request.args.get('next', '') %}
+    {% else %}
+    {% set pagenext = 'index' %}
+    {% endif %}
+<button type="button"><a style="color: white;" href="{{ url_for('auth.signup', page=pagenext) }}">Регистрация</a></button>
 </div>
 
+{% endblock %}
 {% block scripts %}
 <script src="{{ url_for('static', filename='login.js') }}"></script>
-{% endblock %}
 {% endblock %}

@@ -7,6 +7,7 @@ import sys
 main = Blueprint('main', __name__)
 
 @main.route('/')
+@main.route('/index')
 @login_required
 def index():
     tems = db.session.query(tematiki).filter(tematiki.id_accounts == current_user.id).all()

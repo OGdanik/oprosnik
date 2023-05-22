@@ -48,6 +48,8 @@ def signup_post(page):
 @auth.route('/login', methods=['POST'])
 def login_post():
     page = request.form.get('next')
+    if not page:
+        page = 'index'
     login = request.form.get('login')
     password = request.form.get('password')
     user = accounts.query.filter_by(login=login).first()
