@@ -14,6 +14,7 @@ def index():
     return render_template('index.html', active_index='active', tems=tems)
 
 @main.route('/', methods=['POST'])
+@main.route('/index', methods=['POST'])
 @login_required
 def index_post():
     tema = request.form['tema']
@@ -111,6 +112,12 @@ def opros_post(id_o):
 @main.route('/<int:id_o>/delete')
 @login_required
 def delete_opros(id_o):
+    vopross = db.session.query(voprosi).filter(voprosi.id_opros == id_o).all()
+    for i in vopross:
+        delete_vopros(id_o, i.id)
+    opros_acc = db.session.query(opros_account).filter(opros_account.id_oprosi == id_o).all()
+    for item in opros_acc:
+        db.session.delete(item)
     opros = db.session.query(oprosi).get(id_o)
     db.session.delete(opros)
     db.session.commit()
