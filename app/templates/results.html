@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Результаты{% endblock %}
+{% block content %}
+
+    <h2>Результаты опроса "{{ opros.name }}"</h2>
+    {% for item in otvets %}
+            <div class="block questions">
+                    <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
+                    <p>Варианты ответов: </p>
+                    {% for i in item %}
+                    <p class="otv">{{i.text}} <br>Количество ответов: <span class="count">{{i.count_otvetov}}</span></p>
+                    {% endfor %}
+            </div>
+            {% endfor %}
+{% endblock %}

@@ -25,7 +25,7 @@
                     <p>Вопрос: <b>"{{ item[0].voprosi.text }}"</b>
                     <p>Варианты ответов: </p>
                     {% for i in item %}
-                    <p class="otv">{{i.text}} <br>Количество ответов: <span class="count">{{i.count_otvetov}}</span></p>
+                    <p class="otv">{{i.text}}</p>
                     {% endfor %}
                     <button type="button" onclick="add_otvet_for_edit(this)">Добавить вариант ответа</button>
                     <button type="submit" style="display:none">Сохранить</button>

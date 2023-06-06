@@ -156,3 +156,18 @@ def done(id_o):
         return redirect(url_for('main.opros', id_o=id_o))
     opros = db.session.query(oprosi).get(id_o)
     return render_template('done.html', opros=opros)
+
+@main.route('/<int:id_o>/results')
+@login_required
+def results(id_o):
+    opros = db.session.query(oprosi).get(id_o)
+    voproses = db.session.query(voprosi).filter(voprosi.id_opros == id_o).all()
+    otvets = list()
+    for v in voproses:
+        otvet = db.session.query(otveti).order_by(otveti.id).filter(otveti.id_vopros == v.id).all()
+        otvets.append(otvet)
+    if not opros:
+        return abort(404)
+    if (opros.id_accounts != current_user.id):
+        return redirect(url_for('main.index'))
+    return render_template('results.html', opros=opros, voprosi=voproses, otvets=otvets)

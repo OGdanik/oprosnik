@@ -5,6 +5,7 @@
     <div class="block questions">
         <p>Опрос: "{{ item.name }}"
         <p>Тематика: "{{ item.tematiki.name }}"</p>
+        <p><a class="a-but" href="{{ url_for('main.results', id_o=item.id) }}">Просмотр результатов</a>
         <p><a class="a-but" href="{{ url_for('main.edit_opros', id_o=item.id) }}">Редактирование и просмотр</a>
         <p><a class="a-but" href="{{ url_for('main.delete_opros', id_o=item.id) }}">Удалить</a>
     </div>
